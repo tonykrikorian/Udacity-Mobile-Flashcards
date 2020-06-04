@@ -6,7 +6,7 @@ import {
     TextInput,
     TouchableOpacity,
 } from "react-native";
-
+import { submitEntry } from '../utils/API'
 
 const AddNewDeck = (props) => {
     const [deckTitle, setDeckTitle] = useState();
@@ -33,8 +33,8 @@ const AddNewDeck = (props) => {
                         alert("Debe ingresar un valor");
                         return false;
                     }
-
-                    navigation.navigate("DeckInfo", { title: deckTitle });
+                    submitEntry(deckTitle)
+                    // navigation.navigate("DeckInfo", { title: deckTitle });
                 }}
             >
                 <View style={styles.button}>
