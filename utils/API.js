@@ -6,17 +6,15 @@ export function getDecks() {
 }
 
 export function submitEntry(entry) {
-    const xx = getItemId();
-    console.log(xx)
     const data = {
         [entry]: {
             title: entry,
             questions: [],
         },
     };
-    // return AsyncStorage.mergeItem(DECKS_KEYS, JSON.stringify(data), (err) => {
-    //     console.log(err);
-    // }).then(() => { });
+    return AsyncStorage.mergeItem(DECKS_KEYS, JSON.stringify(data), (err) => {
+        console.log(err);
+    }).then(() => { });
 }
 
 

@@ -1,4 +1,4 @@
-import { getDecks } from '../utils/API'
+import { getDecks, submitEntry } from '../utils/API'
 
 export const GET_DECKS = "GET_DECKS";
 export const ADD_DECK = "ADD_DECK";
@@ -24,6 +24,13 @@ export function addDeck(deck) {
     type: ADD_DECK,
     deck,
   };
+}
+
+export function handleAddDeck(deckTitle) {
+  return (dispatch, getState) => {
+
+    console.log('current state:', getState());
+  }
 }
 
 export function deleteDeck(title) {

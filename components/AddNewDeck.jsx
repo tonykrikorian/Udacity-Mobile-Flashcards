@@ -7,13 +7,14 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { submitEntry } from '../utils/API'
+import { handleAddDeck } from '../actions/decks'
 
 const AddNewDeck = (props) => {
     const [deckTitle, setDeckTitle] = useState();
     const { navigation } = props;
 
     useEffect(() => {
-        setDeckTitle("");
+        handleAddDeck()
     }, []);
     return (
         <View style={styles.container}>
