@@ -19,7 +19,7 @@ export function handleGetDecks() {
   }
 }
 
-export function addDeck(deck) {
+function addDeckAction(deck) {
   return {
     type: ADD_DECK,
     deck,
@@ -28,8 +28,9 @@ export function addDeck(deck) {
 
 export function handleAddDeck(deckTitle) {
   return (dispatch, getState) => {
-
-    console.log('current state:', getState());
+    return submitEntry(deckTitle).then(() => {
+      dispatch(addDeckAction(deckTitle))
+    })
   }
 }
 
