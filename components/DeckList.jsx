@@ -3,14 +3,16 @@ import { Text, View, StyleSheet, FlatList } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { getDecks } from '../utils/API'
 import DeckItem from './DeckItem';
+import { connect } from "react-redux";
+import { handleGetDecks } from '../actions/decks'
+
 
 const DeckList = (props) => {
-    const [deckItems, setDeckItems] = useState({})
+    const { decks, dispatch } = props;
+
     useEffect(() => {
-        getDecks().then((result) => {
-            setDeckItems(JSON.parse(result))
-            console.log(deckItems)
-        })
+        if (Object.keys(decks).length === 0)
+            dispatch(handleGetDecks())
     }, [])
 
 
@@ -24,8 +26,21 @@ const DeckList = (props) => {
             />
         );
     };
+
+    if (Object.keys(decks).length === 0) {
+        return (
+            <View style={styles.textNoDeck}>
+                <Text style={{ fontSize: 25 }}>You must enter a Deck</Text>
+                <MaterialCommunityIcons
+                    name="emoticon-happy-outline"
+                    size={50}
+                    color="black"
+                />
+            </View>
+        );
+    }
     return <View style={styles.container}>
-        {flatList(deckItems)}
+        {flatList(decks)}
     </View>;
 }
 
@@ -42,4 +57,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
 });
-export default DeckList;
+
+function mapStateToProps({ decks }) {
+    return {
+        decks,
+    };
+}
+export default connect(mapStateToProps)(DeckList);
