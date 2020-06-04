@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Text, View } from 'react-native'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { MaterialIcons } from '@expo/vector-icons'
+import AddDeckRouter from './AddDeckRouter';
 
 
 function HomeScreen() {
@@ -28,7 +29,7 @@ const TabNavigator = () => {
             <Tab.Screen name="Decks" component={HomeScreen} options={{
                 tabBarIcon: () => (<MaterialIcons name="folder" size={24} color="gray" />)
             }} />
-            <Tab.Screen name="AddDeck" component={SettingsScreen} options={{
+            <Tab.Screen name="AddDeck" component={AddDeckRouter} options={{
                 tabBarIcon: () => (<MaterialIcons name="folder" size={24} color="gray" />)
             }} />
         </Tab.Navigator>
