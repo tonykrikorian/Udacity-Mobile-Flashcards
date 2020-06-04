@@ -1,7 +1,6 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useEffect } from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { getDecks } from '../utils/API'
 import DeckItem from './DeckItem';
 import { connect } from "react-redux";
 import { handleGetDecks } from '../actions/decks'
