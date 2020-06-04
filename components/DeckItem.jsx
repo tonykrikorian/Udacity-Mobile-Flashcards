@@ -8,7 +8,7 @@ const DeckItem = (props) => {
         <View style={styles.container}>
             <TouchableOpacity
                 onPress={() => {
-                    // navigation.navigate("Details", { title });
+                    navigation.navigate("DeckInfo", { title, questions });
                 }}
             >
                 <View style={styles.deckItem}>
