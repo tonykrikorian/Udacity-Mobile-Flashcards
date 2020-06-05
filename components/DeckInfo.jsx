@@ -13,7 +13,10 @@ const DeckInfo = (props) => {
         dispatch,
         decks
     } = props;
-    const cards = decks[title].questions.length
+    let cards = 0
+    if (decks[title]) cards = decks[title].questions.length
+
+
     return (
         <View
             style={{ flex: 1, justifyContent: "space-around", alignItems: "center" }}
