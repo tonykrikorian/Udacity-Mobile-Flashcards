@@ -20,10 +20,9 @@ const AddCardToDeck = (props) => {
         },
     } = props;
 
-    debugger;
-    console.log({ props });
     useEffect(() => {
         setQuestion("");
+        setAnswer("")
     }, []);
     return (
         <View style={styles.container}>
