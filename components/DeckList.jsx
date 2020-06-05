@@ -10,8 +10,8 @@ const DeckList = (props) => {
     const { decks, dispatch } = props;
 
     useEffect(() => {
-        if (Object.keys(decks).length === 0)
-            dispatch(handleGetDecks())
+        dispatch(handleGetDecks())
+
     }, [])
 
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Text, View, Button, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getDecks } from '../utils/API'
+import { connect } from "react-redux";
+import { handleDeleteDeck, handleGetDecks } from '../actions/decks'
 
 const DeckInfo = (props) => {
     const {
@@ -9,6 +11,7 @@ const DeckInfo = (props) => {
             params: { title, questions },
         },
         navigation,
+        dispatch
     } = props;
 
     return (
@@ -45,7 +48,8 @@ const DeckInfo = (props) => {
 
                 <TouchableOpacity
                     onPress={() => {
-
+                        dispatch(handleDeleteDeck(title))
+                        navigation.navigate('Home')
                     }}
                 >
                     <View style={styles.button}>
@@ -70,4 +74,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default DeckInfo;
+export default connect()(DeckInfo);

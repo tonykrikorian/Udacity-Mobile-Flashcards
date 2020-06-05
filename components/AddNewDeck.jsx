@@ -7,14 +7,14 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { submitEntry } from '../utils/API'
+import { handleAddDeck } from '../actions/decks'
+import { connect } from "react-redux";
 
 const AddNewDeck = (props) => {
     const [deckTitle, setDeckTitle] = useState();
-    const { navigation } = props;
+    const { navigation, dispatch } = props;
 
-    useEffect(() => {
-        setDeckTitle("");
-    }, []);
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>What is the title of the new Deck?</Text>
@@ -33,7 +33,7 @@ const AddNewDeck = (props) => {
                         alert("Debe ingresar un valor");
                         return false;
                     }
-                    submitEntry(deckTitle)
+                    dispatch(handleAddDeck(deckTitle))
                     // navigation.navigate("DeckInfo", { title: deckTitle });
                 }}
             >
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddNewDeck
+export default connect()(AddNewDeck)
