@@ -17,24 +17,22 @@ export default function decks(state = {}, action) {
       };
     }
     case DELETE_DECK: {
-      const { decks } = state
-      delete decks[action.deck]
-      return {
-        ...state, decks: {
-          ...decks
-        }
-      }
+      console.log({ state })
+      const state2 = { ...state }
+      delete state2[action.deck]
+      return state2
+
 
     }
-    case ADD_CARD: {
-      return {
-        ...state,
-        [action.title]: {
-          ...state[action.title],
-          questions: [...state[action.title].questions, action.question],
-        },
-      };
-    }
+    // case ADD_CARD: {
+    //   return {
+    //     ...state,
+    //     [action.title]: {
+    //       ...state[action.title],
+    //       questions: [...state[action.title].questions, action.question],
+    //     },
+    //   };
+    // }
 
     default:
       return state;

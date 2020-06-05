@@ -50,11 +50,13 @@ function deleteDeckAction(deck) {
 }
 
 export function handleDeleteDeck(deck) {
-  return (dispatch) => {
-    return removeEntry(deck).then(() => {
-      dispatch(deleteDeckAction(deck))
-    }).catch(() => {
-      dispatch(deleteDeckAction(deck))
-    })
+  return {
+    type: DELETE_DECK,
+    deck
   }
+  // return (dispatch) => {
+  //   return removeEntry(deck).then(() => {
+  //     dispatch(deleteDeckAction(deck))
+  //   })
+  // }
 }
