@@ -34,7 +34,7 @@ const AddNewDeck = (props) => {
                         return false;
                     }
                     dispatch(handleAddDeck(deckTitle))
-                    // navigation.navigate("DeckInfo", { title: deckTitle });
+                    navigation.navigate("DeckInfo", { title: deckTitle });
                 }}
             >
                 <View style={styles.button}>

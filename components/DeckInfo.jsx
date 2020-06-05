@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Button, StyleSheet } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getDecks } from '../utils/API'
 import { connect } from "react-redux";
 import { handleDeleteDeck, handleGetDecks } from '../actions/decks'
 
