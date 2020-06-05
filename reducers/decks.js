@@ -1,5 +1,7 @@
 import { GET_DECKS, ADD_DECK, DELETE_DECK } from "../actions/decks";
 import { ADD_CARD } from "../actions/cards";
+import { omit } from 'lodash';
+
 
 export default function decks(state = {}, action) {
   switch (action.type) {
@@ -15,9 +17,14 @@ export default function decks(state = {}, action) {
       };
     }
     case DELETE_DECK: {
-      const estado = { ...state };
-      delete estado[action.title];
-      return estado;
+      const { decks } = state
+      delete decks[action.deck]
+      return {
+        ...state, decks: {
+          ...decks
+        }
+      }
+
     }
     case ADD_CARD: {
       return {
