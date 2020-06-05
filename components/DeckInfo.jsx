@@ -10,9 +10,10 @@ const DeckInfo = (props) => {
             params: { title, questions },
         },
         navigation,
-        dispatch
+        dispatch,
+        decks
     } = props;
-
+    const cards = decks[title].questions.length
     return (
         <View
             style={{ flex: 1, justifyContent: "space-around", alignItems: "center" }}
@@ -21,7 +22,7 @@ const DeckInfo = (props) => {
                 <Text style={{ fontSize: 30, textAlign: "center" }}>{title}</Text>
                 <Text
                     style={{ color: "gray", textAlign: "center" }}
-                >{`0 Cards`}</Text>
+                >{`${cards} Cards`}</Text>
             </View>
 
             <View style={{ marginTop: 1 }}>
@@ -72,5 +73,9 @@ const styles = StyleSheet.create({
         color: "white",
     },
 });
-
-export default connect()(DeckInfo);
+function mapStateToProps({ decks }) {
+    return {
+        decks
+    }
+}
+export default connect(mapStateToProps)(DeckInfo);
