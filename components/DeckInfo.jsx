@@ -27,7 +27,7 @@ const DeckInfo = (props) => {
             <View style={{ marginTop: 1 }}>
                 <TouchableOpacity
                     onPress={() => {
-                        // navigation.navigate("AddCard", { title });
+                        navigation.navigate("AddCard", { title });
                     }}
                 >
                     <View style={styles.button}>
