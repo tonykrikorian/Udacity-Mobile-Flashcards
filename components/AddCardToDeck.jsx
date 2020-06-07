@@ -12,6 +12,7 @@ import { addCard } from "../actions/cards";
 const AddCardToDeck = (props) => {
     const [question, setQuestion] = useState();
     const [answer, setAnswer] = useState();
+    const [description, setDescription] = useState();
     const {
         dispatch,
         navigation,
@@ -23,6 +24,7 @@ const AddCardToDeck = (props) => {
     useEffect(() => {
         setQuestion("");
         setAnswer("")
+        setDescription("")
     }, []);
     return (
         <View style={styles.container}>
@@ -45,6 +47,15 @@ const AddCardToDeck = (props) => {
                     value={answer}
                 />
             </View>
+            <View style={styles.border}>
+                <TextInput
+                    placeholder="Write a short description"
+                    onChangeText={(text) => {
+                        setDescription(text);
+                    }}
+                    value={description}
+                />
+            </View>
             <TouchableOpacity
                 onPress={() => {
                     if (!question) {
@@ -55,7 +66,11 @@ const AddCardToDeck = (props) => {
                         alert("You may enter an answer");
                         return false;
                     }
-                    dispatch(addCard(title, question, answer));
+                    if (!description) {
+                        alert("You may enter a description");
+                        return false;
+                    }
+                    dispatch(addCard(title, question, answer, description));
                     navigation.navigate("DeckInfo", { title });
                 }}
             >
