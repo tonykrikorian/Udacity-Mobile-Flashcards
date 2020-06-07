@@ -4,12 +4,23 @@ import { connect } from "react-redux";
 import { MaterialIcons, Feather } from "@expo/vector-icons";
 
 const Quiz = (props) => {
+    const {
+        route: {
+            params: { title },
+        },
+        decks,
+        dispatch
+    } = props
+
+    const cards = decks[title].questions.length;
+    const question = decks[title].questions[0];
 
     const [answer, setAnswer] = useState();
 
     useEffect(() => {
         setAnswer("");
     }, []);
+
 
 
     const QuestionAnswer = () => {
@@ -31,6 +42,14 @@ const Quiz = (props) => {
             return (
                 <View>
                     <Text style={styles.text}>Yes!</Text>
+                    <View style={{ marginTop: 10, marginBottom: 10 }}>
+                        <Text style={{
+                            textAlign: "center",
+                            fontSize: 20,
+                            fontWeight: 'bold'
+
+                        }}>{question.description}</Text>
+                    </View>
                     <TouchableOpacity
                         onPress={() => {
                             setAnswer("");
@@ -57,17 +76,6 @@ const Quiz = (props) => {
         }
     };
 
-    const {
-        route: {
-            params: { title },
-        },
-        decks,
-        dispatch
-    } = props
-
-    const cards = decks[title].questions.length;
-    const question = decks[title].questions[0];
-
     return (<Fragment>
         <View style={styles.container}>
             <View style={{ alignSelf: "flex-start", alignItems: "flex-start" }}>
@@ -88,9 +96,9 @@ const Quiz = (props) => {
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "center" }}>
                     <TouchableOpacity
-                        onPress={() => {
-                            setAnswer("No");
-                        }}
+                    // onPress={() => {
+                    //     setAnswer("No");
+                    // }}
                     >
                         <View style={styles.buttonDanger}>
                             <Text style={styles.buttonText}>Incorrect</Text>
@@ -100,12 +108,12 @@ const Quiz = (props) => {
             </View>
             <TouchableOpacity
                 disabled={answer === ""}
-                onPress={() => {
-                    let id2 = parseInt(cards) + 1;
-                    debugger;
-                    console.log(id2);
-                    navigation.navigate("Quiz", { title, id: id2 });
-                }}
+            // onPress={() => {
+            //     let id2 = parseInt(cards) + 1;
+            //     debugger;
+            //     console.log(id2);
+            //     navigation.navigate("Quiz", { title, id: id2 });
+            // }}
             >
                 <View style={styles.buttonNext}>
                     <Text style={styles.buttonText}>Next Question</Text>
