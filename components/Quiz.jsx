@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { MaterialIcons, Feather } from "@expo/vector-icons";
+import { addAnswerToQuestionAction } from './../actions/cards';
 
 const Quiz = (props) => {
     const {
@@ -38,7 +39,8 @@ const Quiz = (props) => {
                 </View>
             );
         }
-        if (answer === "Yes") {
+        if (answer == question.answer) {
+
             return (
                 <View>
                     <Text style={styles.text}>Yes!</Text>
@@ -60,7 +62,7 @@ const Quiz = (props) => {
                 </View>
             );
         }
-        if (answer === "No") {
+        if (answer !== question.answer) {
             return (
                 <View>
                     <Text style={styles.text}>Incorrect answer!</Text>
@@ -87,6 +89,7 @@ const Quiz = (props) => {
                     <TouchableOpacity
                         onPress={() => {
                             setAnswer("Yes");
+                            dispatch(addAnswerToQuestionAction(title, 0))
                         }}
                     >
                         <View style={styles.buttonSuccess}>

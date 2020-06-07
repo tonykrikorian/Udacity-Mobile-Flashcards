@@ -1,6 +1,17 @@
 import { addQuestionToEntry } from '../utils/API'
 export const ADD_CARD = "ADD_CARD";
+export const ADD_ANSWER_TO_QUESTION = "ADD_ANSWER_TO_QUESTION"
 
+
+
+export function addAnswerToQuestionAction(title, answer) {
+  return {
+    type: ADD_ANSWER_TO_QUESTION,
+    title,
+    answer
+
+  };
+}
 
 function addCard(title, question, answer, description) {
   return {
