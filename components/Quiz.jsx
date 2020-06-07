@@ -112,7 +112,7 @@ const Quiz = (props) => {
                 </View>
             </View>
             <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
-                {questionNumberBar > 1 ? (
+                {/* {questionNumberBar > 1 ? (
                     <Fragment>
                         <TouchableOpacity
                             // disabled={answer === ""}
@@ -131,7 +131,7 @@ const Quiz = (props) => {
 
 
                         </TouchableOpacity>
-                    </Fragment>) : null}
+                    </Fragment>) : null} */}
                 <TouchableOpacity
                     // disabled={answer === ""}
                     onPress={() => {
