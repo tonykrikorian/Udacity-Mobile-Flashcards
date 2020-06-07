@@ -18,7 +18,7 @@ const FinalScore = (props) => {
             <View style={{ alignItems: 'center' }}>
                 {(correctAnswers.length >= (cards / 2)) ? <MaterialCommunityIcons name="emoticon-happy-outline" size={100} color="black" />
                     : <MaterialCommunityIcons name="emoticon-sad-outline" size={100} color="black" />}
-                <Text>{`You answer ${correctAnswers.length} correct answers of ${cards} questions `}</Text>
+                <Text style={{ fontSize: 20, textAlign: 'center' }}>{`You answer ${correctAnswers.length} correct answers of ${cards} questions `}</Text>
             </View>
         </Fragment>)
     }
