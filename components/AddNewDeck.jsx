@@ -6,7 +6,6 @@ import {
     TextInput,
     TouchableOpacity,
 } from "react-native";
-import { submitEntry } from '../utils/API'
 import { handleAddDeck } from '../actions/decks'
 import { connect } from "react-redux";
 
@@ -15,7 +14,7 @@ const AddNewDeck = (props) => {
     const { navigation, dispatch } = props;
 
     useEffect(() => {
-        setDeckTitle("")
+        setDeckTitle(null)
     }, [])
     return (
         <View style={styles.container}>
