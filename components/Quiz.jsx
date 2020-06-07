@@ -14,7 +14,8 @@ const Quiz = (props) => {
             params: { title },
         },
         decks,
-        dispatch
+        dispatch,
+        navigation
     } = props
 
     const cards = decks[title].questions.length;
@@ -142,6 +143,8 @@ const Quiz = (props) => {
                             setQuestionNumber((++count))
                             setQuestionNumberBar((++count2))
                             setAnswer("")
+                        } else {
+                            navigation.navigate("Final Score")
                         }
                     }}
                 >
