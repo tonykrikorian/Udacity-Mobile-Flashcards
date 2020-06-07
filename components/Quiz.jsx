@@ -144,7 +144,7 @@ const Quiz = (props) => {
                             setQuestionNumberBar((++count2))
                             setAnswer("")
                         } else {
-                            navigation.navigate("Final Score")
+                            navigation.navigate("Final Score", { title })
                         }
                     }}
                 >

@@ -1,12 +1,81 @@
 import React, { Component, Fragment } from 'react';
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-const FinalScore = () => {
+const FinalScore = (props) => {
+    const {
+        dispatch, decks,
+        route: {
+            params: { title }
+        },
+    } = props
+    const correctAnswers = decks[title].correctAnswers
+    const cards = decks[title].questions.length;
+
+    const scoreMessage = () => {
+        return (<Fragment>
+            <View style={{ alignItems: 'center' }}>
+                {(correctAnswers.length >= (cards / 2)) ? <MaterialCommunityIcons name="emoticon-happy-outline" size={100} color="black" />
+                    : <MaterialCommunityIcons name="emoticon-sad-outline" size={100} color="black" />}
+                <Text>{`You answer ${correctAnswers.length} correct answers of ${cards} questions `}</Text>
+            </View>
+        </Fragment>)
+    }
+
     return (<Fragment>
-        <View>
-            <Text>Final Score</Text>
+        <View style={styles.container} >
+            {scoreMessage()}
+
+            <View style={{ marginTop: 1 }}>
+                <TouchableOpacity
+                    onPress={() => {
+                        navigation.navigate("Start Quiz", { title });
+                    }}
+                >
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Restart Quiz</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => {
+                        dispatch(handleDeleteDeck(title))
+                        navigation.navigate('Home')
+                    }}
+                >
+                    <View style={styles.button}>
+                        <Text style={styles.buttonText}>Back to Deck</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         </View>
     </Fragment>);
 }
 
-export default FinalScore;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    button: {
+        marginBottom: 20,
+        backgroundColor: "#2196F3",
+        borderRadius: 15,
+    },
+    buttonText: {
+        textAlign: "center",
+        padding: 15,
+        color: "white",
+    },
+})
+
+function mapStateToProps({ decks }) {
+    return {
+        decks
+    }
+}
+export default connect(mapStateToProps)(FinalScore);
