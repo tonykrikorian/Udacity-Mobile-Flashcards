@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: "bold",
-        fontSize: 45,
+        fontSize: 35,
         textAlign: "center",
     },
     button: {
