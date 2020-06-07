@@ -1,6 +1,5 @@
 import { GET_DECKS, ADD_DECK, DELETE_DECK } from "../actions/decks";
 import { ADD_CARD } from "../actions/cards";
-import { omit } from 'lodash';
 
 
 export default function decks(state = {}, action) {

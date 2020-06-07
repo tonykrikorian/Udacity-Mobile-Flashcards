@@ -34,14 +34,6 @@ export function handleAddDeck(deckTitle) {
   }
 }
 
-
-export function deleteDeck(title) {
-  return {
-    type: DELETE_DECK,
-    title,
-  };
-}
-
 function deleteDeckAction(deck) {
   return {
     type: DELETE_DECK,

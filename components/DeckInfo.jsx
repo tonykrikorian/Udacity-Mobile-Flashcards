@@ -41,7 +41,7 @@ const DeckInfo = (props) => {
 
                 <TouchableOpacity
                     onPress={() => {
-                        //navigation.navigate("Quiz", { title, id: 0 });
+                        navigation.navigate("Start Quiz", { title });
                     }}
                 >
                     <View style={styles.button}>

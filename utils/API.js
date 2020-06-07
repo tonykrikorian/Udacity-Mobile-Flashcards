@@ -33,7 +33,9 @@ export function addQuestionToEntry(key, pregunta) {
         .then((results) => {
             const data = JSON.parse(results)
             data[key].questions.push(pregunta)
-            AsyncStorage.setItem(DECKS_KEYS, JSON.stringify(data))
+            AsyncStorage.setItem(DECKS_KEYS, JSON.stringify(data), (err) => {
+                console.log(err);
+            }).then(() => { })
         })
 }
 
