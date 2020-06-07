@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import { MaterialIcons, Feather } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { addAnswerToQuestionAction } from './../actions/cards';
 
 const Quiz = (props) => {
@@ -111,22 +111,44 @@ const Quiz = (props) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <TouchableOpacity
-                // disabled={answer === ""}
-                onPress={() => {
-                    let count = questionNumber
-                    let count2 = questionNumberBar
+            <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
+                {questionNumberBar > 1 ? (
+                    <Fragment>
+                        <TouchableOpacity
+                            // disabled={answer === ""}
+                            onPress={() => {
+                                let count = questionNumber
+                                let count2 = questionNumberBar
 
-                    if (parseInt(questionNumber) < parseInt(cards) && parseInt(questionNumberBar) < parseInt(cards)) {
-                        setQuestionNumber((++count))
-                        setQuestionNumberBar((++count2))
-                    }
-                }}
-            >
-                <View style={styles.buttonNext}>
-                    <Text style={styles.buttonText}>Next Question</Text>
-                </View>
-            </TouchableOpacity>
+                                if (parseInt(questionNumber) <= parseInt(cards) && parseInt(questionNumberBar) <= parseInt(cards)) {
+                                    setQuestionNumber((--count))
+                                    setQuestionNumberBar((--count2))
+                                }
+                            }}
+                        >
+
+                            <MaterialIcons name="navigate-before" size={45} color="black" />
+
+
+                        </TouchableOpacity>
+                    </Fragment>) : null}
+                <TouchableOpacity
+                    // disabled={answer === ""}
+                    onPress={() => {
+                        let count = questionNumber
+                        let count2 = questionNumberBar
+
+                        if (parseInt(questionNumber) < parseInt(cards) && parseInt(questionNumberBar) < parseInt(cards)) {
+                            setQuestionNumber((++count))
+                            setQuestionNumberBar((++count2))
+                        }
+                    }}
+                >
+
+                    <MaterialIcons name="navigate-next" size={45} color="black" />
+                </TouchableOpacity>
+
+            </View>
         </View>
     </Fragment>)
 };
