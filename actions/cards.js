@@ -2,7 +2,7 @@ import { addQuestionToEntry } from '../utils/API'
 export const ADD_CARD = "ADD_CARD";
 
 
-export function addCard(title, question, answer, description) {
+function addCard(title, question, answer, description) {
   return {
     type: ADD_CARD,
     title,

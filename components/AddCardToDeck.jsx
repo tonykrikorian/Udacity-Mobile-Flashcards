@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
-import { addCard } from "../actions/cards";
+import { handleAddCard } from './../actions/cards';
 
 const AddCardToDeck = (props) => {
     const [question, setQuestion] = useState();
@@ -70,7 +70,7 @@ const AddCardToDeck = (props) => {
                         alert("You may enter a description");
                         return false;
                     }
-                    dispatch(addCard(title, question, answer, description));
+                    dispatch(handleAddCard(title, question, answer, description));
                     navigation.navigate("DeckInfo", { title });
                 }}
             >
