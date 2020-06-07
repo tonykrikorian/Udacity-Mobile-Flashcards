@@ -28,4 +28,12 @@ export function removeEntry(key) {
         })
 }
 
+export function addQuestionToEntry(key, pregunta) {
+    return AsyncStorage.getItem(DECKS_KEYS)
+        .then((results) => {
+            const data = JSON.parse(results)
+            data[key].questions.push(pregunta)
+            AsyncStorage.setItem(DECKS_KEYS, JSON.stringify(data))
+        })
+}
 

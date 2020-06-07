@@ -18,9 +18,9 @@ const DeckList = (props) => {
     const flatList = (decksStorage) => {
         return (
             <FlatList
-                data={Object.values(decksStorage)}
+                data={decksStorage}
                 renderItem={({ item }) => (
-                    <DeckItem {...item} key={item.title} {...props} />
+                    <DeckItem {...item} key={item.id} {...props} />
                 )}
             />
         );
@@ -58,8 +58,14 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps({ decks }) {
+
+    let i = 0;
+    const decksData = Object.values(decks).map(item => {
+        item.id = (++i).toString();
+        return item;
+    })
     return {
-        decks,
+        decks: decksData,
     };
 }
 export default connect(mapStateToProps)(DeckList);

@@ -6,36 +6,57 @@ import {
     TextInput,
     TouchableOpacity,
 } from "react-native";
-import { handleAddDeck } from '../actions/decks'
 import { connect } from "react-redux";
+import { addCard } from "../actions/cards";
 
-const AddNewDeck = (props) => {
-    const [deckTitle, setDeckTitle] = useState("");
-    const { navigation, dispatch } = props;
+const AddCardToDeck = (props) => {
+    const [question, setQuestion] = useState();
+    const [answer, setAnswer] = useState();
+    const {
+        dispatch,
+        navigation,
+        route: {
+            params: { title },
+        },
+    } = props;
 
     useEffect(() => {
-        setDeckTitle(null)
-    }, [])
+        setQuestion("");
+        setAnswer("")
+    }, []);
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>What is the title of the new Deck?</Text>
+            <Text style={styles.title}>Write one question and an answer </Text>
             <View style={styles.border}>
                 <TextInput
-                    placeholder="Title of your Deck!"
+                    placeholder="Write a question"
                     onChangeText={(text) => {
-                        setDeckTitle(text);
+                        setQuestion(text);
                     }}
-                    value={deckTitle}
+                    value={question}
+                />
+            </View>
+            <View style={styles.border}>
+                <TextInput
+                    placeholder="Write an answer"
+                    onChangeText={(text) => {
+                        setAnswer(text);
+                    }}
+                    value={answer}
                 />
             </View>
             <TouchableOpacity
                 onPress={() => {
-                    if (!deckTitle) {
-                        alert("Debe ingresar un valor");
+                    if (!question) {
+                        alert("You may enter a question");
                         return false;
                     }
-                    dispatch(handleAddDeck(deckTitle))
-                    navigation.navigate("DeckInfo", { title: deckTitle });
+                    if (!answer) {
+                        alert("You may enter an answer");
+                        return false;
+                    }
+                    dispatch(addCard(title, question, answer));
+                    navigation.navigate("DeckInfo", { title });
                 }}
             >
                 <View style={styles.button}>
@@ -62,7 +83,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: "bold",
-        fontSize: 35,
+        fontSize: 45,
         textAlign: "center",
     },
     button: {
@@ -76,5 +97,7 @@ const styles = StyleSheet.create({
         color: "white",
     },
 });
-
-export default connect()(AddNewDeck)
+function mapStateToProps({ decks }) {
+    return { decks };
+}
+export default connect(mapStateToProps)(AddCardToDeck);

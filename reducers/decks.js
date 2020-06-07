@@ -21,15 +21,15 @@ export default function decks(state = {}, action) {
       delete state2[action.deck]
       return state2
     }
-    // case ADD_CARD: {
-    //   return {
-    //     ...state,
-    //     [action.title]: {
-    //       ...state[action.title],
-    //       questions: [...state[action.title].questions, action.question],
-    //     },
-    //   };
-    // }
+    case ADD_CARD: {
+      return {
+        ...state,
+        [action.title]: {
+          ...state[action.title],
+          questions: [...state[action.title].questions, action.questions],
+        },
+      };
+    }
 
     default:
       return state;
