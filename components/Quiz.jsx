@@ -5,6 +5,10 @@ import { MaterialIcons, Feather } from "@expo/vector-icons";
 import { addAnswerToQuestionAction } from './../actions/cards';
 
 const Quiz = (props) => {
+    const [answer, setAnswer] = useState();
+    const [questionNumber, setQuestionNumber] = useState(0)
+    const [questionNumberBar, setQuestionNumberBar] = useState(1)
+
     const {
         route: {
             params: { title },
@@ -14,9 +18,7 @@ const Quiz = (props) => {
     } = props
 
     const cards = decks[title].questions.length;
-    const question = decks[title].questions[0];
-
-    const [answer, setAnswer] = useState();
+    let question = decks[title].questions[(questionNumber)];
 
     useEffect(() => {
         setAnswer("");
@@ -81,7 +83,7 @@ const Quiz = (props) => {
     return (<Fragment>
         <View style={styles.container}>
             <View style={{ alignSelf: "flex-start", alignItems: "flex-start" }}>
-                <Text style={{ fontSize: 25 }}>{`1/${cards}`}</Text>
+                <Text style={{ fontSize: 25 }}>{`${questionNumberBar}/${cards}`}</Text>
             </View>
             {QuestionAnswer()}
             <View>
@@ -110,13 +112,16 @@ const Quiz = (props) => {
                 </View>
             </View>
             <TouchableOpacity
-                disabled={answer === ""}
-            // onPress={() => {
-            //     let id2 = parseInt(cards) + 1;
-            //     debugger;
-            //     console.log(id2);
-            //     navigation.navigate("Quiz", { title, id: id2 });
-            // }}
+                // disabled={answer === ""}
+                onPress={() => {
+                    let count = questionNumber
+                    let count2 = questionNumberBar
+
+                    if (parseInt(questionNumber) < parseInt(cards) && parseInt(questionNumberBar) < parseInt(cards)) {
+                        setQuestionNumber((++count))
+                        setQuestionNumberBar((++count2))
+                    }
+                }}
             >
                 <View style={styles.buttonNext}>
                     <Text style={styles.buttonText}>Next Question</Text>
