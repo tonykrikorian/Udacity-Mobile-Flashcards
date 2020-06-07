@@ -141,6 +141,7 @@ const Quiz = (props) => {
                         if (parseInt(questionNumber) < parseInt(cards) && parseInt(questionNumberBar) < parseInt(cards)) {
                             setQuestionNumber((++count))
                             setQuestionNumberBar((++count2))
+                            setAnswer("")
                         }
                     }}
                 >
