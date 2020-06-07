@@ -11,10 +11,12 @@ import { handleAddDeck } from '../actions/decks'
 import { connect } from "react-redux";
 
 const AddNewDeck = (props) => {
-    const [deckTitle, setDeckTitle] = useState();
+    const [deckTitle, setDeckTitle] = useState("");
     const { navigation, dispatch } = props;
 
-
+    useEffect(() => {
+        setDeckTitle("")
+    }, [])
     return (
         <View style={styles.container}>
             <Text style={styles.title}>What is the title of the new Deck?</Text>
