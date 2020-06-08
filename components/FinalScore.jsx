@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 const FinalScore = (props) => {
     const {
         dispatch, decks,
+        navigation,
         route: {
             params: { title }
         },
@@ -40,8 +41,8 @@ const FinalScore = (props) => {
 
                 <TouchableOpacity
                     onPress={() => {
-                        dispatch(handleDeleteDeck(title))
-                        navigation.navigate('Home')
+
+                        navigation.navigate('DeckInfo', { title })
                     }}
                 >
                     <View style={styles.button}>

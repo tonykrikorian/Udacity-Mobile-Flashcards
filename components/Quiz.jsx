@@ -23,6 +23,8 @@ const Quiz = (props) => {
 
     useEffect(() => {
         setAnswer("");
+        setQuestionNumber(0),
+            setQuestionNumberBar(1)
     }, []);
 
 
@@ -91,8 +93,9 @@ const Quiz = (props) => {
                 <View style={{ flexDirection: "row", justifyContent: "center" }}>
                     <TouchableOpacity
                         onPress={() => {
+
                             setAnswer("Yes");
-                            dispatch(addAnswerToQuestionAction(title, 0))
+                            if (answer == question.answer) dispatch(addAnswerToQuestionAction(title, 0))
                         }}
                     >
                         <View style={styles.buttonSuccess}>
@@ -102,9 +105,10 @@ const Quiz = (props) => {
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "center" }}>
                     <TouchableOpacity
-                    // onPress={() => {
-                    //     setAnswer("No");
-                    // }}
+                        onPress={() => {
+                            setAnswer("No");
+                            if (answer == question.answer) dispatch(addAnswerToQuestionAction(title, 0))
+                        }}
                     >
                         <View style={styles.buttonDanger}>
                             <Text style={styles.buttonText}>Incorrect</Text>
