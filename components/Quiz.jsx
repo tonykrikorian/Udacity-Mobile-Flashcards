@@ -8,7 +8,6 @@ const Quiz = (props) => {
     const [answer, setAnswer] = useState("");
     const [questionNumber, setQuestionNumber] = useState(0)
     const [questionNumberBar, setQuestionNumberBar] = useState(1)
-    const [correctQuestions, setCorrectQuestions] = useState([])
 
     const {
         route: {
@@ -125,26 +124,6 @@ const Quiz = (props) => {
                 </View>
             </View>
             <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
-                {/* {questionNumberBar > 1 ? (
-                    <Fragment>
-                        <TouchableOpacity
-                            // disabled={answer === ""}
-                            onPress={() => {
-                                let count = questionNumber
-                                let count2 = questionNumberBar
-
-                                if (parseInt(questionNumber) <= parseInt(cards) && parseInt(questionNumberBar) <= parseInt(cards)) {
-                                    setQuestionNumber((--count))
-                                    setQuestionNumberBar((--count2))
-                                }
-                            }}
-                        >
-
-                            <MaterialIcons name="navigate-before" size={45} color="black" />
-
-
-                        </TouchableOpacity>
-                    </Fragment>) : null} */}
                 <TouchableOpacity
                     // disabled={answer === ""}
                     onPress={() => {
