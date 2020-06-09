@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { clearCorrectQuestionAction } from './../actions/cards';
 
 const FinalScore = (props) => {
     const {
@@ -31,6 +32,7 @@ const FinalScore = (props) => {
             <View style={{ marginTop: 1 }}>
                 <TouchableOpacity
                     onPress={() => {
+                        dispatch(clearCorrectQuestionAction(title))
                         navigation.navigate("Start Quiz", { title });
                     }}
                 >
@@ -41,7 +43,7 @@ const FinalScore = (props) => {
 
                 <TouchableOpacity
                     onPress={() => {
-
+                        dispatch(clearCorrectQuestionAction(title))
                         navigation.navigate('DeckInfo', { title })
                     }}
                 >
