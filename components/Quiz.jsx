@@ -5,9 +5,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { addAnswerToQuestionAction } from './../actions/cards';
 
 const Quiz = (props) => {
-    const [answer, setAnswer] = useState();
+    const [answer, setAnswer] = useState("");
     const [questionNumber, setQuestionNumber] = useState(0)
     const [questionNumberBar, setQuestionNumberBar] = useState(1)
+    const [correctQuestions, setCorrectQuestions] = useState([])
 
     const {
         route: {
@@ -27,12 +28,21 @@ const Quiz = (props) => {
             setQuestionNumberBar(1)
     }, []);
 
+    useEffect(() => {
+        if (answer == question.answer) {
+            dispatch(addAnswerToQuestionAction(title, 0))
+        }
+    }, [answer])
+
 
 
     const QuestionAnswer = () => {
+
+
         if (answer === "") {
             return (
-                <View>
+
+                < View >
                     <Text style={styles.text}>{question.question}</Text>
                     <TouchableOpacity
                         onPress={() => {
@@ -41,11 +51,10 @@ const Quiz = (props) => {
                     >
                         <Text style={styles.answerIcon}>Answer</Text>
                     </TouchableOpacity>
-                </View>
+                </View >
             );
         }
         if (answer == question.answer) {
-
             return (
                 <View>
                     <Text style={styles.text}>Yes!</Text>
@@ -95,7 +104,6 @@ const Quiz = (props) => {
                         onPress={() => {
 
                             setAnswer("Yes");
-                            if (answer == question.answer) dispatch(addAnswerToQuestionAction(title, 0))
                         }}
                     >
                         <View style={styles.buttonSuccess}>
@@ -107,7 +115,6 @@ const Quiz = (props) => {
                     <TouchableOpacity
                         onPress={() => {
                             setAnswer("No");
-                            if (answer == question.answer) dispatch(addAnswerToQuestionAction(title, 0))
                         }}
                     >
                         <View style={styles.buttonDanger}>
