@@ -11,6 +11,7 @@ export function submitEntry(entry) {
         [entry]: {
             title: entry,
             questions: [],
+            correctAnswers: []
         },
     };
     return AsyncStorage.mergeItem(DECKS_KEYS, JSON.stringify(data), (err) => {

@@ -1,5 +1,5 @@
 import { GET_DECKS, ADD_DECK, DELETE_DECK } from "../actions/decks";
-import { ADD_CARD } from "../actions/cards";
+import { ADD_CARD, ADD_ANSWER_TO_QUESTION, CLEAR_CORRECT_QUESTIONS } from "../actions/cards";
 
 
 export default function decks(state = {}, action) {
@@ -12,6 +12,7 @@ export default function decks(state = {}, action) {
         [action.deck]: {
           title: action.deck,
           questions: [],
+          correctAnswers: []
         },
       };
     }
@@ -29,7 +30,25 @@ export default function decks(state = {}, action) {
         },
       };
     }
+    case ADD_ANSWER_TO_QUESTION: {
+      return {
+        ...state,
+        [action.title]: {
+          ...state[action.title],
+          correctAnswers: [...state[action.title].correctAnswers, action.answer]
+        }
+      }
+    }
 
+    case CLEAR_CORRECT_QUESTIONS: {
+      return {
+        ...state,
+        [action.title]: {
+          ...state[action.title],
+          correctAnswers: []
+        }
+      }
+    }
     default:
       return state;
   }

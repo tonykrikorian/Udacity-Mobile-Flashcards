@@ -4,6 +4,7 @@ import DeckInfo from './DeckInfo';
 import DeckList from './DeckList';
 import AddCardToDeck from './AddCardToDeck';
 import Quiz from './Quiz';
+import FinalScore from './FinalScore';
 
 
 const Stack = createStackNavigator();
@@ -14,6 +15,7 @@ const DeckInfoRouter = () => {
             <Stack.Screen name="DeckInfo" component={DeckInfo} />
             <Stack.Screen name="AddCard" component={AddCardToDeck} />
             <Stack.Screen name="Start Quiz" component={Quiz} />
+            <Stack.Screen name="Final Score" component={FinalScore} />
         </Stack.Navigator>
     </Fragment>);
 }
