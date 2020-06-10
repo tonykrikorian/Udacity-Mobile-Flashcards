@@ -57,7 +57,8 @@ const Quiz = (props) => {
         if (answer == question.answer) {
             return (
                 <View>
-                    <Text style={styles.text}>Yes!</Text>
+                    <Text style={[styles.text, { color: '#5cb85c' }]}>Yes!</Text>
+                    <Text style={[styles.text, { color: '#5cb85c' }]}>Correct answer!</Text>
                     <View style={{ marginTop: 10, marginBottom: 10 }}>
                         <Text style={{
                             textAlign: "center",
