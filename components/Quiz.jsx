@@ -29,7 +29,7 @@ const Quiz = (props) => {
 
     useEffect(() => {
         if (answer == question.answer) {
-            dispatch(addAnswerToQuestionAction(title, 0))
+            // dispatch(addAnswerToQuestionAction(title, 0))
 
         }
     }, [answer])
@@ -80,7 +80,9 @@ const Quiz = (props) => {
         if (answer !== question.answer) {
             return (
                 <View>
-                    <Text style={styles.text}>Incorrect answer!</Text>
+                    <Text style={[styles.text, { color: '#d9534f' }]}>No!</Text>
+                    <Text style={[styles.text, { color: '#d9534f' }]}>Incorrect answer!</Text>
+                    <Text style={[styles.text], { fontSize: 25, textAlign: 'center' }}>Please try again</Text>
                     <TouchableOpacity
                         onPress={() => {
                             setAnswer("");
