@@ -8,6 +8,7 @@ const Quiz = (props) => {
   const [answer, setAnswer] = useState("");
   const [questionNumber, setQuestionNumber] = useState(0);
   const [questionNumberBar, setQuestionNumberBar] = useState(1);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const {
     route: {
@@ -33,6 +34,34 @@ const Quiz = (props) => {
   }, [answer]);
 
   const QuestionAnswer = () => {
+    if (showAnswer) {
+      return (
+        <View>
+          <Text style={[styles.text, { color: "#5cb85c" }]}>
+            The correct answer is:
+          </Text>
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
+            <Text
+              style={{
+                textAlign: "center",
+                fontSize: 20,
+                fontWeight: "bold",
+              }}
+            >
+              {question.description}
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              setAnswer("");
+              setShowAnswer(false);
+            }}
+          >
+            <Text style={styles.answerIcon}>Question</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
     if (answer === "") {
       return (
         <View>
@@ -40,6 +69,7 @@ const Quiz = (props) => {
           <TouchableOpacity
             onPress={() => {
               setAnswer("");
+              setShowAnswer(true);
             }}
           >
             <Text style={styles.answerIcon}>Answer</Text>
@@ -132,7 +162,7 @@ const Quiz = (props) => {
         </View>
         <View style={{ justifyContent: "center", flexDirection: "row" }}>
           <TouchableOpacity
-            // disabled={answer === ""}
+            disabled={answer === ""}
             onPress={() => {
               let count = questionNumber;
               let count2 = questionNumberBar;
@@ -143,10 +173,12 @@ const Quiz = (props) => {
               ) {
                 setQuestionNumber(++count);
                 setQuestionNumberBar(++count2);
+                setShowAnswer(false);
                 setAnswer("");
               } else {
                 setAnswer("");
                 setQuestionNumber(0), setQuestionNumberBar(1);
+                setShowAnswer(false);
                 navigation.navigate("Final Score", { title });
               }
             }}
