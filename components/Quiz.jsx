@@ -29,7 +29,9 @@ const Quiz = (props) => {
 
   useEffect(() => {
     if (answer == question.answer) {
-      dispatch(addAnswerToQuestionAction(title, questionNumber));
+      if (decks[title].correctAnswers.indexOf(questionNumber) == -1) {
+        dispatch(addAnswerToQuestionAction(title, questionNumber));
+      }
     }
   }, [answer]);
 
