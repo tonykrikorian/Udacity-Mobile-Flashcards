@@ -29,7 +29,7 @@ const Quiz = (props) => {
 
   useEffect(() => {
     if (answer == question.answer) {
-      dispatch(addAnswerToQuestionAction(title, 0));
+      dispatch(addAnswerToQuestionAction(title, questionNumber));
     }
   }, [answer]);
 
