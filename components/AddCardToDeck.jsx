@@ -40,7 +40,7 @@ const AddCardToDeck = (props) => {
       </View>
       <View style={styles.border}>
         <TextInput
-          placeholder="Write an answer"
+          placeholder="Write an answer Yes or No"
           onChangeText={(text) => {
             setAnswer(text);
           }}
