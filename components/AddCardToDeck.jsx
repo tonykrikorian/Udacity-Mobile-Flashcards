@@ -40,14 +40,14 @@ const AddCardToDeck = (props) => {
       </View>
       <View style={styles.border}>
         <TextInput
-          placeholder="Write an answer Yes or No"
+          placeholder="Write an answer"
           onChangeText={(text) => {
             setAnswer(text);
           }}
           value={answer}
         />
       </View>
-      <View style={styles.border}>
+      {/* <View style={styles.border}>
         <TextInput
           placeholder="Write a short description"
           onChangeText={(text) => {
@@ -55,7 +55,7 @@ const AddCardToDeck = (props) => {
           }}
           value={description}
         />
-      </View>
+      </View> */}
       <TouchableOpacity
         onPress={() => {
           if (!question) {
@@ -66,11 +66,8 @@ const AddCardToDeck = (props) => {
             alert("You may enter an answer");
             return false;
           }
-          if (!description) {
-            alert("You may enter a description");
-            return false;
-          }
-          dispatch(handleAddCard(title, question, answer, description));
+
+          dispatch(handleAddCard(title, question, answer));
           setQuestion("");
           setAnswer("");
           setDescription("");

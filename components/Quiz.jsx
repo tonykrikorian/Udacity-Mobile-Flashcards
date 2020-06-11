@@ -92,7 +92,7 @@ const Quiz = (props) => {
                 fontWeight: "bold",
               }}
             >
-              {question.description}
+              {question.answer}
             </Text>
           </View>
           <TouchableOpacity
@@ -140,7 +140,7 @@ const Quiz = (props) => {
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
             <TouchableOpacity
               onPress={() => {
-                setAnswer("Yes");
+                setAnswer(question.answer);
               }}
             >
               <View style={styles.buttonSuccess}>
