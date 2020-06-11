@@ -47,15 +47,6 @@ const AddCardToDeck = (props) => {
           value={answer}
         />
       </View>
-      {/* <View style={styles.border}>
-        <TextInput
-          placeholder="Write a short description"
-          onChangeText={(text) => {
-            setDescription(text);
-          }}
-          value={description}
-        />
-      </View> */}
       <TouchableOpacity
         onPress={() => {
           if (!question) {
