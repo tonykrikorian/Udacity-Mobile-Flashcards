@@ -26,7 +26,13 @@ const DeckInfo = (props) => {
           style={{ color: "gray", textAlign: "center" }}
         >{`${cards} Cards`}</Text>
       </View>
-
+      {parseInt(cards) == 0 ? (
+        <View>
+          <Text style={{ fontSize: 20, textAlign: "center", color: "#f0ad4e" }}>
+            You have to add cards to start a quiz
+          </Text>
+        </View>
+      ) : null}
       <View style={{ marginTop: 1 }}>
         <TouchableOpacity
           onPress={() => {
