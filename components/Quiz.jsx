@@ -2,7 +2,11 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
-import { addAnswerToQuestionAction } from "./../actions/cards";
+import {
+  addAnswerToQuestionAction,
+  clearCorrectQuestionAction,
+} from "./../actions/cards";
+import { setLocalNotification, clearLocalNotification } from "../utils/helpers";
 
 const Quiz = (props) => {
   const [answer, setAnswer] = useState("");
@@ -29,7 +33,9 @@ const Quiz = (props) => {
 
   useEffect(() => {
     if (answer == question.answer) {
-      dispatch(addAnswerToQuestionAction(title, 0));
+      if (decks[title].correctAnswers.indexOf(questionNumber) == -1) {
+        dispatch(addAnswerToQuestionAction(title, questionNumber));
+      }
     }
   }, [answer]);
 
@@ -92,7 +98,7 @@ const Quiz = (props) => {
                 fontWeight: "bold",
               }}
             >
-              {question.description}
+              {question.answer}
             </Text>
           </View>
           <TouchableOpacity
@@ -140,7 +146,7 @@ const Quiz = (props) => {
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
             <TouchableOpacity
               onPress={() => {
-                setAnswer("Yes");
+                setAnswer(question.answer);
               }}
             >
               <View style={styles.buttonSuccess}>
@@ -179,6 +185,8 @@ const Quiz = (props) => {
                 setAnswer("");
                 setQuestionNumber(0), setQuestionNumberBar(1);
                 setShowAnswer(false);
+                clearLocalNotification().then(() => {});
+                setLocalNotification();
                 navigation.navigate("Final Score", { title });
               }
             }}
