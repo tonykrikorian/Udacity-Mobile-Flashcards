@@ -54,7 +54,7 @@ const Quiz = (props) => {
                 fontWeight: "bold",
               }}
             >
-              {question.description}
+              {question.answer}
             </Text>
           </View>
           <TouchableOpacity
