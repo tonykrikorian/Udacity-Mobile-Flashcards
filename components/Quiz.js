@@ -5,7 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import {
   addAnswerToQuestionAction,
   clearCorrectQuestionAction,
-} from "./../actions/cards";
+} from "../actions/cards";
 import { setLocalNotification, clearLocalNotification } from "../utils/helpers";
 
 const Quiz = (props) => {

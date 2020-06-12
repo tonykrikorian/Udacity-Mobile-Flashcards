@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
-import { handleAddCard } from "./../actions/cards";
+import { handleAddCard } from "../actions/cards";
 
 const AddCardToDeck = (props) => {
   const [question, setQuestion] = useState();
